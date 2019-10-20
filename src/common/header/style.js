@@ -178,6 +178,7 @@ export const PopularSearch = styled.div`
     width: 280px;
     box-sizing: border-box;
     box-shadow: 0 0 8px rgba(0,0,0,.2);
+    border-radius: 4px;
 
     &::before {
         position: absolute;
