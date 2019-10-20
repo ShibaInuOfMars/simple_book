@@ -54,7 +54,8 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.header.focused
+        // immutable对象不能直接通过点语法获取，需要通过get方法获取
+        focused: state.header.get('focused')
     };
 };
 
