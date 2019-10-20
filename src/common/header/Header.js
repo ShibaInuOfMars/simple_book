@@ -15,8 +15,44 @@ import {
     HeaderNav,
     HeaderToolBtn,
     HeaderSearchWrapper,
-    HeaderSearch
+    HeaderSearch,
+    PopularSearch,
+    PopularSearchTitle,
+    PopularSearchSitch,
+    PopularSearchList,
+    PopularSearchItem
 } from './style';
+
+// 是否展示热门搜索
+const getPopularSearch = (flag) => {
+    if(flag) {
+        return (
+            <PopularSearch>
+                <PopularSearchTitle>
+                    热门搜索
+                    <PopularSearchSitch>
+                        换一批
+                    </PopularSearchSitch>
+                </PopularSearchTitle>
+                <PopularSearchList>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                    <PopularSearchItem>html</PopularSearchItem>
+                </PopularSearchList>
+            </PopularSearch>
+        );
+    } else {
+        return null;
+    }
+}
 
 const Header = (props) => {
     const {focused, handleInputFocus, handleInputBlur} = props;
@@ -45,6 +81,8 @@ const Header = (props) => {
                             />
                         </CSSTransition> 
                         <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe615;</span>
+
+                        {getPopularSearch(focused)}
                     </HeaderSearchWrapper>
                 </HeaderCenter>
             </HeaderContent>

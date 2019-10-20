@@ -169,3 +169,59 @@ export const HeaderSearch = styled.input.attrs({
         width: 240px;
     }
 `;
+
+export const PopularSearch = styled.div`
+    position: absolute;
+    left: 0;
+    top: 57px;
+    padding: 0 20px;
+    width: 280px;
+    box-sizing: border-box;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+
+    &::before {
+        position: absolute;
+        content: "";
+        left: 27px;
+        top: -5px;
+        width: 10px;
+        height: 10px;
+        transform: rotate(45deg);
+        background: #fff;
+    }
+`;
+
+export const PopularSearchTitle = styled.div`
+    font-size: 15px;
+    line-height: 20px;
+    color: #787878;
+    margin: 15px 0;
+`;
+
+export const PopularSearchSitch = styled.a`
+    float: right;
+    font-size: 13px;
+    cursor: pointer;
+`;
+
+export const PopularSearchList = styled.div`
+    overflow: hidden;
+`;
+
+export const PopularSearchItem = styled.a`
+    float: left;
+    padding: 2px 6px;
+    line-height: 20px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    color: #787878;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+    &:hover {
+        color: #333;
+        border-color: #b4b4b4;
+    }
+`;
