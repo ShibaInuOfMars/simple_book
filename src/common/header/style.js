@@ -110,17 +110,24 @@ export const HeaderToolBtn = styled.a`
 export const HeaderSearchWrapper =  styled.div`
     position: relative;
     float: left;
+    margin-left: 15px;
 
     .iconfont {
         position: absolute;
         right: 5px;
-        bottom: 10px;
+        bottom: 11px;
         width: 30px;
         color: #969696;
         line-height: 30px;
         font-size: 20px;
         border-radius: 15px;
         text-align: center;
+        cursor: pointer;
+
+        &.focused {
+            color: #fff;
+            background: #969696;
+        }
     }
 `;
 
@@ -130,7 +137,6 @@ export const HeaderSearch = styled.input.attrs({
     width: 240px;
     height: 38px;
     margin-top: 9px;
-    margin-left: 15px;
     border: none;
     outline: none;
     border-radius: 19px;
@@ -141,5 +147,25 @@ export const HeaderSearch = styled.input.attrs({
 
     &::placeholder {
         color: #999;
+    }
+
+    &.focused {
+        width: 320px;
+    }
+
+    &.slide-enter {
+        transition: width .2s ease-out;
+    }
+
+    &.slide-enter-active {
+        width: 320px;
+    }
+
+    &.slide-exit {
+        transition: width .2s ease-out;
+    }
+
+    &.slide-exit-active {
+        width: 240px;
     }
 `;
