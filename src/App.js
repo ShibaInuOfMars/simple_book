@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
 import Header from './common/header/Header';
+import Home  from './pages/home';
+import Detail from './pages/detail';
 
 import {Provider} from 'react-redux';
 
@@ -18,6 +22,12 @@ class App extends Component {
                     <GlobalStyled />
                     <GlobalFontStyle />
                     <Header />
+                    <Router>
+                        <Switch>
+                            <Route path="/" exact component={Home} />
+                            <Route path="/detail" component={Detail} />
+                        </Switch>
+                    </Router>
                 </Provider>
             </div>
         );
