@@ -69,7 +69,7 @@ class Header extends Component {
                         <HeaderSearchWrapper>
                             <CSSTransition
                                 in={focused}
-                                timeout={200}
+                                timeout={300}
                                 classNames="slide"
                             >
                                 <HeaderSearch 

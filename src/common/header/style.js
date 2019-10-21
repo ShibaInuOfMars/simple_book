@@ -160,7 +160,7 @@ export const HeaderSearch = styled.input.attrs({
     }
 
     &.slide-enter {
-        transition: width .2s ease-out;
+        transition: all .3s linear;
     }
 
     &.slide-enter-active {
@@ -168,7 +168,7 @@ export const HeaderSearch = styled.input.attrs({
     }
 
     &.slide-exit {
-        transition: width .2s ease-out;
+        transition: all .3s linear;
     }
 
     &.slide-exit-active {
