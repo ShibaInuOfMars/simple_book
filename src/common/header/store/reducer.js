@@ -32,7 +32,11 @@ export default (state = defaultState, action) => {
 
     // 设置热门搜索数据
     if(action.type === actionTypes.POPULAR_SEARCH_LIST) {
-        return state.set('popularSearchList', action.data).set('totalPage', action.totalPage);
+        // return state.set('popularSearchList', action.data).set('totalPage', action.totalPage); // 等同于下面一句
+        return state.merge({
+            popularSearchList: action.data,
+            totalPage: action.totalPage
+        });
     }
 
     // 鼠标进入热门搜索框
