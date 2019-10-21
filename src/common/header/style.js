@@ -205,10 +205,14 @@ export const PopularSearchTitle = styled.div`
     margin: 15px 0;
 `;
 
-export const PopularSearchSitch = styled.a`
+export const PopularSearchSwitch = styled.a`
     float: right;
     font-size: 13px;
     cursor: pointer;
+
+    &:hover {
+        color: #333;
+    }
 `;
 
 export const PopularSearchList = styled.div`

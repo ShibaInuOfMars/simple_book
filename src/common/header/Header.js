@@ -18,7 +18,7 @@ import {
     HeaderSearch,
     PopularSearch,
     PopularSearchTitle,
-    PopularSearchSitch,
+    PopularSearchSwitch,
     PopularSearchList,
     PopularSearchItem
 } from './style';
@@ -27,23 +27,43 @@ class Header extends Component {
 
     // 是否展示热门搜索
     getPopularSearch = () => {
-        const {focused, popularSearchList} = this.props;
+        const {focused, popularSearchList, page, totalPage, mouseInSearch, handleMouseEnter, handleMouseLeave, handleListSwitch} = this.props;
 
-        if(focused) {
+        // 注意: 此时 popularSearchList 是一个immutable对象，不能使用下标获取里面对应的内容
+        // 通过toJS方法可以将immutable对象转成普通的js对象
+        const newPopularSearchList = popularSearchList.toJS();
+
+        const currentList = [];
+
+
+        // 因为页面初始化的时候并没有获取列表的数据，而是当搜索框获得焦点的时候才发生ajax请求获取数据，所以需要判断
+        if(newPopularSearchList.length) {
+            /*
+                page = 1   (1 - 1) * 10 = 0    i < 1 * 10  ===> 0~9
+                page = 2   (2 - 1) * 10 = 10    i < 2 * 10  ===> 10~19
+            */
+            for(let i = (page - 1) * 10; i < page * 10; i++) {
+                // console.log(newPopularSearchList[i]); // undefined
+                currentList.push(
+                    <PopularSearchItem key={newPopularSearchList[i]}>{newPopularSearchList[i]}</PopularSearchItem>
+                );
+            }
+        }
+
+        if(focused || mouseInSearch) {
             return (
-                <PopularSearch>
+                <PopularSearch 
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <PopularSearchTitle>
                         热门搜索
-                        <PopularSearchSitch>
+                        <PopularSearchSwitch onClick={() => handleListSwitch(page, totalPage)}>
                             换一批
-                        </PopularSearchSitch>
+                        </PopularSearchSwitch>
                     </PopularSearchTitle>
                     <PopularSearchList>
-                        {
-                            popularSearchList.map(item => {
-                                return <PopularSearchItem key={item}>{item}</PopularSearchItem>
-                            })
-                        }
+                        {currentList}
                     </PopularSearchList>
                 </PopularSearch>
             );
@@ -95,7 +115,10 @@ const mapStateToProps = (state) => {
         // state也是一个immutable对象了
         // focused: state.get('header').get('focused')  等同于下面一句
         focused: state.getIn(['header', 'focused']),
-        popularSearchList: state.getIn(['header', 'popularSearchList'])
+        mouseInSearch: state.getIn(['header', 'mouseInSearch']),
+        popularSearchList: state.getIn(['header', 'popularSearchList']),
+        page: state.getIn(['header', 'page']),
+        totalPage: state.getIn(['header', 'totalPage'])
     };
 };
 
@@ -108,6 +131,23 @@ const mapDispatchToProps = (dispatch) => {
 
         handleInputBlur() {
             dispatch(actionCreators.searchBlur());
+        },
+
+        handleMouseEnter() {
+            dispatch(actionCreators.mouseInSearch())
+        },
+
+        handleMouseLeave() {
+            dispatch(actionCreators.mouseLeaveSearch())
+        },
+
+        // 换一批
+        handleListSwitch(page, totalPage) {
+            if(page < totalPage) {
+                dispatch(actionCreators.listSwitch(page + 1));
+            } else {
+                dispatch(actionCreators.listSwitch(1));
+            }
         }
     };
 };

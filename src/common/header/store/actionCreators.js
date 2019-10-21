@@ -14,10 +14,27 @@ export const searchBlur = () => ({
     type: actionTypes.SEARCH_BLUR
 });
 
+// 鼠标进入热门搜索框
+export const mouseInSearch = () => ({
+    type: actionTypes.MOUSE_IN_SEARCH
+});
+
+// 鼠标离开热门搜索框
+export const mouseLeaveSearch = () => ({
+    type: actionTypes.MOUSE_LEAVE_SEARCH
+});
+
+// 换一批
+export const listSwitch = (page) => ({
+    type: actionTypes.LIST_SWITCH,
+    page
+});
+
 // 设置热门搜索列表数据
 const setPopularSearchList = (data) => ({
     type: actionTypes.POPULAR_SEARCH_LIST,
-    data: fromJS(data) // 将普通的js对象转成immutable对象
+    data: fromJS(data), // 将普通的js对象转成immutable对象
+    totalPage: Math.ceil(data.length / 10) // 获取总页数
 });
 
 // 异步获取热门搜索列表数据
