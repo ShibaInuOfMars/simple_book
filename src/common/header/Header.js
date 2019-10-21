@@ -24,6 +24,11 @@ import {
 } from './style';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+
+        this.refreshIcon = React.createRef();
+    }
 
     // 是否展示热门搜索
     getPopularSearch = () => {
@@ -58,8 +63,8 @@ class Header extends Component {
                 >
                     <PopularSearchTitle>
                         热门搜索
-                        <PopularSearchSwitch onClick={() => handleListSwitch(page, totalPage)}>
-                            换一批
+                        <PopularSearchSwitch onClick={() => handleListSwitch(page, totalPage, this.refreshIcon)}>
+                            <span ref={this.refreshIcon} className="iconfont refresh">&#xe63f;</span>换一批
                         </PopularSearchSwitch>
                     </PopularSearchTitle>
                     <PopularSearchList>
@@ -73,7 +78,7 @@ class Header extends Component {
     }
 
     render() {
-        const {focused, handleInputFocus, handleInputBlur} = this.props;
+        const {focused, popularSearchList, handleInputFocus, handleInputBlur} = this.props;
 
         return (
             <HeaderWrapper>
@@ -94,11 +99,11 @@ class Header extends Component {
                             >
                                 <HeaderSearch 
                                     className={focused ? 'focused' : ''} 
-                                    onFocus={handleInputFocus}
+                                    onFocus={() => handleInputFocus(popularSearchList)}
                                     onBlur={handleInputBlur}
                                 />
                             </CSSTransition> 
-                            <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe615;</span>
+                            <span className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe615;</span>
     
                             {this.getPopularSearch()}
                         </HeaderSearchWrapper>
@@ -124,8 +129,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleInputFocus() {
-            dispatch(actionCreators.getPopularSearchList());
+        handleInputFocus(list) {
+            // console.log(list);
+            // 当列表为空的时候再发送请求
+            (list.size === 0) && dispatch(actionCreators.getPopularSearchList());
             dispatch(actionCreators.searchFocus());
         },
 
@@ -142,7 +149,18 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         // 换一批
-        handleListSwitch(page, totalPage) {
+        handleListSwitch(page, totalPage, refreshIcon) {
+            // 刷新的图标
+            // console.log(refreshIcon.current);
+
+            // 获取它的旋转属性的值
+            const icon = refreshIcon.current;
+            let rotateValue = icon.style.transform.replace(/[^0-9]/ig, '');
+            
+            rotateValue = parseInt(rotateValue) ? parseInt(rotateValue) : 0;
+
+            icon.style.transform = 'rotate('+ (rotateValue + 360) +'deg)';
+
             if(page < totalPage) {
                 dispatch(actionCreators.listSwitch(page + 1));
             } else {

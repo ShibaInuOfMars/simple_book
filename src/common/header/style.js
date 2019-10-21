@@ -118,7 +118,7 @@ export const HeaderSearchWrapper =  styled.div`
     float: left;
     margin-left: 15px;
 
-    .iconfont {
+    .zoom {
         position: absolute;
         right: 5px;
         bottom: 11px;
@@ -209,6 +209,14 @@ export const PopularSearchSwitch = styled.a`
     float: right;
     font-size: 13px;
     cursor: pointer;
+
+    .refresh {
+        float: left;
+        font-size: 14px;
+        margin-right: 2px;
+        transition: all .2s ease-in;
+        transform-origin: center center;
+    }
 
     &:hover {
         color: #333;
