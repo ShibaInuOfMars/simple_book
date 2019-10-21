@@ -45,6 +45,12 @@ export const HeaderNav = styled.a`
             font-size: 20px;
             margin-right: 5px;
         }
+
+        &.app {
+            &:hover {
+                background: #f5f5f5;
+            }
+        }
     }
 
     &.nav-right {
