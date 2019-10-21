@@ -3,9 +3,15 @@ import styled from 'styled-components';
 import logo from './../../static/images/logo.png';
 
 export const HeaderWrapper = styled.div`
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
     height: 55px;
     border-bottom: 1px solid #f0f0f0;
     font-size: 17px;
+    background: #fff;
 `;
 
 export const HeaderContent = styled.div`
@@ -185,6 +191,7 @@ export const PopularSearch = styled.div`
     box-sizing: border-box;
     box-shadow: 0 0 8px rgba(0,0,0,.2);
     border-radius: 4px;
+    background: #fff;
 
     &::before {
         position: absolute;

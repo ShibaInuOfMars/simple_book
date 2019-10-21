@@ -37,7 +37,28 @@ const defaultState = fromJS({
             "title": "手手绘",
             "imgUrl": "//upload.jianshu.io/collections/images/21/20120316041115481.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/180/h/180"
         }
-    ]
+    ],
+
+    articleList: [
+        {
+            id: 1,
+            title: '【笔记】一些简单的自我提升Tips',
+            desc: '最近看了些自我提升相关的内容 挑几个不错的总结一下 大家有爱自取~ tips： 不要高估自己的专注力，将任务分解，每次只做一件事与其怀揣远大梦想...',
+            imgUrl: '//upload-images.jianshu.io/upload_images/11631398-fbd9296b0554ef03.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
+        },
+        {
+            id: 2,
+            title: '【笔记】一些简单的自我提升Tips',
+            desc: '最近看了些自我提升相关的内容 挑几个不错的总结一下 大家有爱自取~ tips： 不要高估自己的专注力，将任务分解，每次只做一件事与其怀揣远大梦想...',
+            imgUrl: '//upload-images.jianshu.io/upload_images/11631398-fbd9296b0554ef03.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
+        },
+        {
+            id: 3,
+            title: '【笔记】一些简单的自我提升Tips',
+            desc: '最近看了些自我提升相关的内容 挑几个不错的总结一下 大家有爱自取~ tips： 不要高估自己的专注力，将任务分解，每次只做一件事与其怀揣远大梦想...',
+            imgUrl: '//upload-images.jianshu.io/upload_images/11631398-fbd9296b0554ef03.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
+        }
+    ] 
 });
 
 export default (state = defaultState, action) => {
