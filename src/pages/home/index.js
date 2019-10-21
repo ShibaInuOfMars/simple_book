@@ -8,7 +8,8 @@ import Writer from './components/writer';
 import {
     HomeWrapper,
     HomeLeft,
-    HomeRight
+    HomeRight,
+    CodeWrapper
 } from './style';
 
 class Home extends Component {
@@ -26,6 +27,18 @@ class Home extends Component {
                 <HomeRight>
 
                     <Recommend />
+                    
+                    <CodeWrapper>
+                        <img className="qrcode" src="//cdn2.jianshu.io/assets/web/download-index-side-qrcode-cb13fc9106a478795f8d10f9f632fccf.png" alt="" />
+                        <div className="info">
+                            <div className="title">
+                                下载简书手机APP  &gt;
+                            </div>
+                            <div className="desc">
+                                随时随地发现和创作内容
+                            </div>
+                        </div>
+                    </CodeWrapper>
 
                     <Writer />
                 </HomeRight>
