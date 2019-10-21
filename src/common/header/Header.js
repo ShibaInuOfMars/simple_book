@@ -38,7 +38,7 @@ class Header extends Component {
                     <HeaderToolBtn className="sign-up">注册</HeaderToolBtn>
                     <HeaderCenter>
                         <HeaderNav className="nav-left actived"><span className="iconfont">&#xe786;</span>首页</HeaderNav>
-                        <HeaderNav className="nav-left"><span className="iconfont">&#xe600;</span>下载App</HeaderNav>
+                        <HeaderNav className="nav-left app"><span className="iconfont">&#xe600;</span>下载App</HeaderNav>
                         <HeaderNav className="nav-right">登录</HeaderNav>
                         <HeaderNav className="nav-right"><span className="iconfont">&#xe636;</span></HeaderNav>
                         <HeaderSearchWrapper>
