@@ -20,9 +20,7 @@ export const HeaderContent = styled.div`
     margin: 0 auto;
 `;
 
-export const HeaderLogo = styled.a.attrs({
-    href: '/'
-})`
+export const HeaderLogo = styled.span`
     float: left;
     width: 100px;
     height: 100%;

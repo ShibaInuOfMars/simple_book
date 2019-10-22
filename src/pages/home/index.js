@@ -1,4 +1,9 @@
-import React, {Component} from 'react';
+// import React, {Component} from 'react';
+// 每当同一个store里的任意一个数据发生变化，那么所有组件都会重新渲染一次，不管那个数据是否被其他组件所使用，这样就带来了性能问题
+// 解决方法1：可以在每个组件中使用shouldComponentUpdate生命周期函数来判断该组件是否需要更新
+// 解决方法2：使用PureComponent代替Component，PureComponent内部自己实现了shouldComponentUpdate方法
+// 注意：因为这次的数据管理使用了immutable.js，所有可以放心使用PureComponent，如果没有使用immutable.js，那么不要使用PureComponent，因为会存在潜在的坑，那么就使用Component，并且手动实现shouldComponentUpdate方法
+import React, {PureComponent} from 'react';
 
 import {connect} from 'react-redux';
 
@@ -19,7 +24,7 @@ import {
     BackTop
 } from './style';
 
-class Home extends Component {
+class Home extends PureComponent {
     
     render() {
         const {showBackTopBtn} = this.props;

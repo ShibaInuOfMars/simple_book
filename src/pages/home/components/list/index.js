@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import {connect} from 'react-redux';
+
+import {Link} from 'react-router-dom';
 
 import {actionCreators} from './../../store';
 
@@ -13,7 +15,7 @@ import {
     LoadMore
 } from './style';
 
-class List extends Component {
+class List extends PureComponent {
     
     render() {
         const {articleList, articleListPage, addArticle} = this.props;
@@ -27,7 +29,8 @@ class List extends Component {
                                 <img className="list-pic" src={item.get('imgUrl')} alt="" />
                             </ListThumbnail>
                             <ListContent>
-                                <a href="http://www.baidu.com" className="title">{item.get('title')}</a>
+                                {/* eslint-disable-next-line */}
+                                <Link to='/detail' className="title">{item.get('title')}</Link>
                                 <p className="abstract">{item.get('abstract')}</p>
                                 <ListMeta>
                                     <span className="jsd-meta">

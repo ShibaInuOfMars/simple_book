@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 
 import {actionCreators} from './store';
 
+import {Link} from 'react-router-dom';
+
 // 实现动画效果
 import { CSSTransition } from 'react-transition-group';
 
@@ -83,7 +85,10 @@ class Header extends Component {
         return (
             <HeaderWrapper>
                 <HeaderContent>
-                    <HeaderLogo />
+                    <Link to="/">
+                        <HeaderLogo />
+                    </Link>
+                    
                     <HeaderToolBtn className="write"><span className="iconfont">&#xe61b;</span>写文章</HeaderToolBtn>
                     <HeaderToolBtn className="sign-up">注册</HeaderToolBtn>
                     <HeaderCenter>
