@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+import {connect} from 'react-redux';
+
+import {actionCreators} from './store';
+
 import Topic from './components/topic';
 import List from './components/list';
 import Recommend from './components/recommend';
@@ -45,6 +49,16 @@ class Home extends Component {
             </HomeWrapper>
         );
     }
+
+    componentDidMount() {
+        this.props.getHomeData();
+    }
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => ({
+    getHomeData() {
+        dispatch(actionCreators.asyncGetHomeData())
+    }
+});
+
+export default connect(null, mapDispatchToProps)(Home);

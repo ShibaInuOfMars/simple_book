@@ -25,7 +25,7 @@ class List extends Component {
                             </ListThumbnail>
                             <ListContent>
                                 <a href="http://www.baidu.com" className="title">{item.get('title')}</a>
-                                <p className="abstract">{item.get('desc')}</p>
+                                <p className="abstract">{item.get('abstract')}</p>
                                 <ListMeta>
                                     <span className="jsd-meta">
                                         <span className="iconfont">&#xe63d;</span>
