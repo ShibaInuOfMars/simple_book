@@ -26,6 +26,7 @@ export const HeaderLogo = styled.span`
     height: 100%;
     background: url(${logo}) no-repeat;
     background-size: cover;
+    cursor: pointer;
 `;
 
 export const HeaderCenter = styled.div`

@@ -3,8 +3,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {actionCreators} from './store';
+import {actionCreators as loginActionCreators} from './../../pages/login/store';
 
-import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 // 实现动画效果
 import { CSSTransition } from 'react-transition-group';
@@ -30,6 +31,10 @@ class Header extends Component {
         super(props);
 
         this.refreshIcon = React.createRef();
+
+        this.goToIndex = this.goToIndex.bind(this);
+        this.goToLogin = this.goToLogin.bind(this);
+        this.goToWrite = this.goToWrite.bind(this);
     }
 
     // 是否展示热门搜索
@@ -80,21 +85,20 @@ class Header extends Component {
     }
 
     render() {
-        const {focused, popularSearchList, handleInputFocus, handleInputBlur} = this.props;
+        const {focused, popularSearchList, loginState, handleInputFocus, handleInputBlur, logout} = this.props;
 
         return (
             <HeaderWrapper>
                 <HeaderContent>
-                    <Link to="/">
-                        <HeaderLogo />
-                    </Link>
-                    
-                    <HeaderToolBtn className="write"><span className="iconfont">&#xe61b;</span>写文章</HeaderToolBtn>
+                    <HeaderLogo onClick={this.goToIndex} />
+                    <HeaderToolBtn className="write" onClick={this.goToWrite}><span className="iconfont">&#xe61b;</span>写文章</HeaderToolBtn>
                     <HeaderToolBtn className="sign-up">注册</HeaderToolBtn>
                     <HeaderCenter>
                         <HeaderNav className="nav-left actived"><span className="iconfont">&#xe786;</span>首页</HeaderNav>
                         <HeaderNav className="nav-left app"><span className="iconfont">&#xe600;</span>下载App</HeaderNav>
-                        <HeaderNav className="nav-right">登录</HeaderNav>
+                        {
+                            loginState ? <HeaderNav className="nav-right" onClick={logout}>退出</HeaderNav> : <HeaderNav className="nav-right" onClick={this.goToLogin}>登录</HeaderNav>
+                        }
                         <HeaderNav className="nav-right"><span className="iconfont">&#xe636;</span></HeaderNav>
                         <HeaderSearchWrapper>
                             <CSSTransition
@@ -117,6 +121,18 @@ class Header extends Component {
             </HeaderWrapper>
         );
     }
+
+    goToIndex() {
+        this.props.history.push('/');
+    }
+
+    goToLogin() {
+        this.props.history.push('/login');
+    }
+
+    goToWrite() {
+        this.props.history.push('/write');
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -128,7 +144,8 @@ const mapStateToProps = (state) => {
         mouseInSearch: state.getIn(['header', 'mouseInSearch']),
         popularSearchList: state.getIn(['header', 'popularSearchList']),
         page: state.getIn(['header', 'page']),
-        totalPage: state.getIn(['header', 'totalPage'])
+        totalPage: state.getIn(['header', 'totalPage']),
+        loginState: state.getIn(['login', 'loginState'])
     };
 };
 
@@ -171,8 +188,12 @@ const mapDispatchToProps = (dispatch) => {
             } else {
                 dispatch(actionCreators.listSwitch(1));
             }
+        },
+
+        logout() {
+            dispatch(loginActionCreators.logout());
         }
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
