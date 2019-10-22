@@ -95,3 +95,22 @@ export const ListMeta = styled.div`
         }
     }
 `;
+
+export const LoadMore = styled.div`
+    width: 100%;
+    height: 40px;
+    background-color: #a5a5a5;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 1.42857;
+
+    &:hover {
+        background-color: #9b9b9b;
+    }
+`;

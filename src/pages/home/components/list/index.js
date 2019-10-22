@@ -2,24 +2,27 @@ import React, {Component} from 'react';
 
 import {connect} from 'react-redux';
 
+import {actionCreators} from './../../store';
+
 import {
     ListWrapper,
     ListItem,
     ListThumbnail,
     ListContent,
-    ListMeta
+    ListMeta,
+    LoadMore
 } from './style';
 
 class List extends Component {
     
     render() {
-        const {articleList} = this.props;
+        const {articleList, articleListPage, addArticle} = this.props;
 
         return (
             <ListWrapper>
                 {
-                    articleList.map(item => (
-                        <ListItem key={item.get('id')}>
+                    articleList.map((item, index) => (
+                        <ListItem key={index}>
                             <ListThumbnail>
                                 <img className="list-pic" src={item.get('imgUrl')} alt="" />
                             </ListThumbnail>
@@ -47,13 +50,24 @@ class List extends Component {
                         </ListItem>
                     ))
                 }
+
+                {
+                    articleList.size ? <LoadMore onClick={() => addArticle(articleListPage)}>阅读更多</LoadMore> : null
+                }
             </ListWrapper>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    articleList: state.getIn(['home', 'articleList'])
+    articleList: state.getIn(['home', 'articleList']),
+    articleListPage: state.getIn(['home', 'articleListPage'])
 });
 
-export default connect(mapStateToProps, null)(List);
+const mapDispatchToProps = (dispatch) => ({
+    addArticle(page) {
+        dispatch(actionCreators.asyncAddArticle(page))
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
