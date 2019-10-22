@@ -30,7 +30,7 @@ class List extends PureComponent {
                             </ListThumbnail>
                             <ListContent>
                                 {/* eslint-disable-next-line */}
-                                <Link to='/detail' className="title">{item.get('title')}</Link>
+                                <Link to={'/detail/' + item.get('id')} className="title">{item.get('title')}</Link>
                                 <p className="abstract">{item.get('abstract')}</p>
                                 <ListMeta>
                                     <span className="jsd-meta">
