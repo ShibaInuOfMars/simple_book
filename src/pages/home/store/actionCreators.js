@@ -36,3 +36,8 @@ export const asyncAddArticle = (page) => {
         }
     }
 }
+
+export const showBackTopBtn = (state) => ({
+    type: actionTypes.SHOW_BACK_TOP_BTN,
+    state
+});

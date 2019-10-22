@@ -62,3 +62,34 @@ export const CodeWrapper = styled.a`
         }
     }
 `;
+
+export const BackTop = styled.div`
+    position: fixed;
+    bottom: 45px;
+    right: 40px;
+    z-index: 1040;
+    box-sizing: border-box;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+
+    &:hover {
+        background-color: hsla(0,0%,71%,.1);
+        transition: .1s ease-in;
+    }
+
+    i {
+        padding-top: 16px;
+        display: block;
+
+        &.iconfont {
+            color: #333;
+            font-size: 18px;
+        }
+    }
+`;

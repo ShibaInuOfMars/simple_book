@@ -11,7 +11,9 @@ const defaultState = fromJS({
 
     recommendList: [],
 
-    writerList: []
+    writerList: [],
+
+    showBackTopBtn: false
 });
 
 export default (state = defaultState, action) => {
@@ -30,6 +32,12 @@ export default (state = defaultState, action) => {
         return state.merge({
             articleList: state.get('articleList').concat(action.articleList),
             articleListPage: action.nextPage
+        });
+    }
+
+    if(action.type === actionTypes.SHOW_BACK_TOP_BTN) {
+        return state.merge({
+            showBackTopBtn: action.state
         });
     }
 
