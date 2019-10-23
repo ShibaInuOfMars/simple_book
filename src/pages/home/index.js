@@ -28,7 +28,7 @@ class Home extends PureComponent {
     
     render() {
         const {showBackTopBtn} = this.props;
-
+        
         return (
             <div>
                 <HomeWrapper>

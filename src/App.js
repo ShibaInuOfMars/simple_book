@@ -4,9 +4,9 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Header from './common/header/Header';
 import Home  from './pages/home';
-import Detail from './pages/detail';
-import Login from './pages/login';
-import Write from './pages/write';
+import Detail from './pages/detail/loadable';
+import Login from './pages/login/loadable';
+import Write from './pages/write/loadable';
 
 import {Provider} from 'react-redux';
 
